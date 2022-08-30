@@ -46,6 +46,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   const userStorageKey = "@gofinances:user";
 
   async function signInWithGoogle() {
+    console.log(CLIENT_ID, REDIRECT_URI);
     try {
       const RESPONSE_TYPE = "token";
       const SCOPE = encodeURI("profile email");

@@ -2,9 +2,8 @@
   "expo": {
     "name": "finances",
     "slug": "finances",
+    "scheme": "finances",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   }
 }

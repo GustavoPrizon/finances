@@ -14,7 +14,7 @@ export function AppRoutes() {
   const theme = useTheme();
   return (
     <Navigator
-      tabBarOptions={{
+      screenOptions={{
         activeTintColor: theme.colors.secondery,
         inactiveTintColor: theme.colors.text,
         labelPosition: "beside-icon",
@@ -22,6 +22,7 @@ export function AppRoutes() {
           paddingVertical: Platform.OS === "ios" ? 20 : 0,
           height: 88,
         },
+        headerShown: false,
       }}
     >
       <Screen
@@ -33,6 +34,7 @@ export function AppRoutes() {
               color={color}
             />
           ),
+          headerShown: false,
         }}
         name="Listagem"
         component={Dashboard}
