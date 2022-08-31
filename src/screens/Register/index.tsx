@@ -42,7 +42,7 @@ export function Register() {
     key: "category",
     name: "Categoria",
   });
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const { user } = useAuth();
 
   const {
@@ -92,7 +92,7 @@ export function Register() {
         key: "category",
         name: "Categoria",
       });
-      navigation.navigate("Listagem");
+      // navigation.navigate("Listagem");
     } catch (error) {
       console.log(error);
       Alert.alert("Não foi possível salvar. ");
@@ -137,13 +137,14 @@ export function Register() {
               />
             </TransactionTypes>
             <CategorySelectButton
+              testID="button-category"
               title={category.name}
               onPress={handleOpenSelectCategoryModal}
             />
           </Fields>
           <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
         </Form>
-        <Modal visible={categoryModalOpen}>
+        <Modal testID="modal-category" visible={categoryModalOpen}>
           <CategorySelect
             category={category}
             setCategory={setCategory}
