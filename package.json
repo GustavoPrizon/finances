@@ -46,6 +46,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@testing-library/jest-native": "^4.0.11",
+    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/react-native": "^11.0.0",
     "@types/jest": "^29.0.0",
     "@types/react": "~18.0.0",
@@ -53,6 +54,7 @@
     "@types/styled-components-react-native": "^5.1.3",
     "babel-preset-expo": "^9.2.0",
     "jest-expo": "^46.0.1",
+    "jest-fetch-mock": "^3.0.3",
     "jest-styled-components": "^7.1.0",
     "typescript": "^4.6.3"
   },
