@@ -2,6 +2,7 @@ import fecthMock from "jest-fetch-mock";
 import { renderHook, act } from "@testing-library/react-hooks";
 import { startAsync } from "expo-auth-session";
 import { AuthProvider, useAuth } from "../../hooks/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 jest.mock("expo-auth-session");
 
@@ -15,10 +16,15 @@ const userTest = {
 };
 
 describe("Auth Hook", () => {
+  beforeEach(async () => {
+    const userCollectionKey = "@gofinances:user";
+    await AsyncStorage.removeItem(userCollectionKey);
+  });
+
   it("should be able to sign in with Google Account", async () => {
     const googleMocked = jest.mocked(startAsync as any);
 
-    googleMocked.mockResolvedValueOnce({
+    googleMocked.mockReturnValue({
       type: "success",
       params: {
         accessToken: "any_token",
@@ -34,5 +40,23 @@ describe("Auth Hook", () => {
     await act(async () => result.current.signInWithGoogle());
 
     expect(result.current.user).toBeTruthy();
+  });
+
+  it("user should not connect it cancel auth with Google", async () => {
+    const googleMocked = jest.mocked(startAsync as any);
+
+    googleMocked.mockReturnValue({
+      type: "cancel",
+    });
+
+    fetchMock.mockResponseOnce(JSON.stringify(userTest));
+
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
+
+    await act(async () => result.current.signInWithGoogle());
+
+    expect(result.current.user).not.toHaveProperty("id");
   });
 });
